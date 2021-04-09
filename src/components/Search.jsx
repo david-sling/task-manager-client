@@ -14,7 +14,7 @@ export default function Search({ setTasks, handleSetTasks }) {
   return (
     <div>
       <TextField
-        style={{ width: "500px", margin: 20 }}
+        style={{ width: "80%", margin: 20 }}
         value={search}
         onChange={({ target: { value } }) => setSearch(value)}
         label="Search"
