@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import ButtonAppBar from "./components/AppBar";
+import Home from "./components/Home";
+import Task from "./components/Task";
+import { getTasks } from "./services/actions";
 
-function App() {
+export default function App() {
+  const [tasks, setTasks] = useState([]);
+  const handleSetTasks = () => {
+    getTasks(setTasks);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <ButtonAppBar
+          handleSetTasks={handleSetTasks}
+          tasks={tasks}
+          setTasks={setTasks}
+        />
+        <Switch>
+          <Route path="/:taskId">
+            <Task
+              handleSetTasks={handleSetTasks}
+              tasks={tasks}
+              setTasks={setTasks}
+            />
+          </Route>
+          <Route path="/">
+            <Home
+              handleSetTasks={handleSetTasks}
+              tasks={tasks}
+              setTasks={setTasks}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
