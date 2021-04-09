@@ -24,6 +24,7 @@ export default function EditTask({
   };
 
   const encode = (file) => {
+    if (!file) return;
     var reader = new FileReader();
     reader.onloadend = function () {
       setEditor({ ...editor, image: reader.result });

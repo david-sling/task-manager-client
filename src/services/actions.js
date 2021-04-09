@@ -3,24 +3,34 @@ import { SERVER_URL } from "../config/urls";
 
 const getTasks = async (setTasks) => {
   const { data } = await axios.get(`${SERVER_URL}/posts`);
-  setTasks(data);
+  setTasks(data || []);
 };
 
 const getTask = async (taskId, setTask) => {
   const { data } = await axios.get(`${SERVER_URL}/posts/${taskId}`);
-  setTask(data);
+  setTask(data || {});
 };
 
 const editTask = async (task, cb) => {
-  console.log(task);
-  const { data } = await axios.patch(`${SERVER_URL}/posts/${task._id}`, task);
-  cb(data);
+  try {
+    console.log(task);
+    const { data } = await axios.patch(`${SERVER_URL}/posts/${task._id}`, task);
+    cb(data);
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 const addTask = async (task, cb) => {
-  console.log(task);
-  const { data } = await axios.post(`${SERVER_URL}/posts`, task);
-  cb(data);
+  try {
+    console.log(task);
+    const { data } = await axios.post(`${SERVER_URL}/posts`, task);
+    cb(data);
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 const deleteTask = async (taskId, cb) => {
