@@ -67,7 +67,6 @@ export default function EditTask({
           />
           <div
             style={{
-              height: 300,
               maxWidth: "100%",
               display: "grid",
               placeItems: "center",

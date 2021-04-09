@@ -2,13 +2,23 @@ import axios from "axios";
 import { SERVER_URL } from "../config/urls";
 
 const getTasks = async (setTasks) => {
-  const { data } = await axios.get(`${SERVER_URL}/posts`);
-  setTasks(data || []);
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/posts`);
+    setTasks(data || []);
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 const getTask = async (taskId, setTask) => {
-  const { data } = await axios.get(`${SERVER_URL}/posts/${taskId}`);
-  setTask(data || {});
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/posts/${taskId}`);
+    setTask(data || {});
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 const editTask = async (task, cb) => {
@@ -34,13 +44,23 @@ const addTask = async (task, cb) => {
 };
 
 const deleteTask = async (taskId, cb) => {
-  const { data } = await axios.delete(`${SERVER_URL}/posts/${taskId}`);
-  cb(data);
+  try {
+    const { data } = await axios.delete(`${SERVER_URL}/posts/${taskId}`);
+    cb(data);
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 const searchTasks = async (search, setTasks) => {
-  const { data } = await axios.get(`${SERVER_URL}/posts/search/${search}`);
-  setTasks(data || []);
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/posts/search/${search}`);
+    setTasks(data || []);
+  } catch (error) {
+    console.error(error.response.statusText);
+    alert(error.response.statusText);
+  }
 };
 
 export { getTasks, getTask, editTask, addTask, deleteTask, searchTasks };
