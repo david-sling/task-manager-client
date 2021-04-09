@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTasks } from "../services/actions";
+import Search from "./Search";
 import TaskCard from "./TaskCard";
 
 export default function Home(props) {
@@ -8,10 +9,13 @@ export default function Home(props) {
     handleSetTasks();
   }, []);
   return (
-    <div className="grid">
-      {tasks?.map((task) => (
-        <TaskCard {...props} task={task} />
-      ))}
-    </div>
+    <>
+      <Search {...props} />
+      <div className="grid">
+        {tasks?.map((task) => (
+          <TaskCard {...props} task={task} />
+        ))}
+      </div>
+    </>
   );
 }

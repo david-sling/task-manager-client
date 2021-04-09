@@ -38,4 +38,9 @@ const deleteTask = async (taskId, cb) => {
   cb(data);
 };
 
-export { getTasks, getTask, editTask, addTask, deleteTask };
+const searchTasks = async (search, setTasks) => {
+  const { data } = await axios.get(`${SERVER_URL}/posts/search/${search}`);
+  setTasks(data || []);
+};
+
+export { getTasks, getTask, editTask, addTask, deleteTask, searchTasks };
