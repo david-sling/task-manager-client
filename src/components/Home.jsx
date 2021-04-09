@@ -12,9 +12,11 @@ export default function Home(props) {
     <>
       <Search {...props} />
       <div className="grid">
-        {tasks?.map((task) => (
-          <TaskCard {...props} task={task} />
-        ))}
+        {tasks.length ? (
+          tasks?.map((task) => <TaskCard {...props} task={task} />)
+        ) : (
+          <h4>No results</h4>
+        )}
       </div>
     </>
   );
