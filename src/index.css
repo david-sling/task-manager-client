@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   color: inherit;
+  font-family: sans-serif;
 }
 
 .grid {
@@ -12,4 +13,9 @@
   grid-gap: 10px;
   margin: 10px;
   place-items: center;
+}
+
+span.link {
+  color: rgb(0, 132, 255);
+  text-decoration: underline;
 }
